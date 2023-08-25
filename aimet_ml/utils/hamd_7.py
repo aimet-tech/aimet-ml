@@ -2,7 +2,7 @@ def score_to_severity(score: int) -> str:
     """
     Convert a score to a severity category.
 
-    Parameters:
+    Args:
         score (int): The input score.
 
     Returns:

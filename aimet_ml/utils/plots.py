@@ -1,18 +1,17 @@
-import numpy as np
 from pathlib import Path
+
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.figure import Figure
 
 PWD = Path(__file__).parent
 
 
-def add_bar_label(
-    bar_chart: plt.bar, with_percent: bool = False, percent_digits: int = 2
-) -> None:
+def add_bar_label(bar_chart: plt.bar, with_percent: bool = False, percent_digits: int = 2) -> None:
     """
     Add labels to a bar chart with optional percentage values.
 
-    Parameters:
+    Args:
         bar_chart (plt.bar): The bar chart object.
         with_percent (bool, optional): Whether to include percentage values. Defaults to False.
         percent_digits (int, optional): Number of decimal digits for percentage values. Defaults to 2.
@@ -30,7 +29,7 @@ def plt2arr(fig: Figure, draw: bool = True) -> np.ndarray:
     """
     Convert a Matplotlib figure to a NumPy array.
 
-    Parameters:
+    Args:
         fig (Figure): The Matplotlib figure to be converted.
         draw (bool, optional): Whether to draw the figure. Defaults to True.
 
@@ -49,7 +48,7 @@ def set_font(font_path: str) -> None:
     """
     Set the font for Matplotlib using the provided font file.
 
-    Parameters:
+    Args:
         font_path (str): Path to the font file.
     """
     import matplotlib
@@ -61,8 +60,6 @@ def set_font(font_path: str) -> None:
 
 
 def set_thai_font() -> None:
-    """
-    Set the Thai font for Matplotlib using a predefined font path.
-    """
+    """Set the Thai font for Matplotlib using a predefined font path."""
     font_path = str(PWD.parent / "resources" / "fonts" / "thsarabunnew-webfont.ttf")
     set_font(font_path)

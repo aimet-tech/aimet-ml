@@ -1,12 +1,15 @@
+from typing import List, Optional
+
 import cv2
 import ffmpeg
+import numpy as np
 
 
 def is_video(filename: str) -> bool:
     """
     Check if a given file contains video streams.
 
-    Parameters:
+    Args:
         filename (str): The path to the input file.
 
     Returns:
@@ -26,14 +29,14 @@ def load_video(video_path: str, verbose: bool = False) -> tuple:
     """
     Load frames from a video file.
 
-    Parameters:
+    Args:
         video_path (str): The path to the video file.
         verbose (bool, optional): If True, print frame loading information.
 
     Returns:
         tuple: A tuple containing a list of frames and the frames per second (fps).
     """
-    frames = []
+    frames: List[np.ndarray] = []
     cap = cv2.VideoCapture(video_path)
     fps = cap.get(cv2.CAP_PROP_FPS)
 
@@ -49,11 +52,11 @@ def load_video(video_path: str, verbose: bool = False) -> tuple:
     return frames, fps
 
 
-def convert_video(vid_path: str, output_path: str, target_fps: int = None) -> None:
+def convert_video(vid_path: str, output_path: str, target_fps: Optional[int] = None) -> None:
     """
     Convert a video to a different frame rate and save to a new file.
 
-    Parameters:
+    Args:
         vid_path (str): The path to the input video file.
         output_path (str): The path to the output video file.
         target_fps (int, optional): The target frames per second for the output video.

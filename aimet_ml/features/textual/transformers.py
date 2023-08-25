@@ -1,11 +1,12 @@
-import torch
-import pandas as pd
-from typing import Union, List
+from typing import List, Union
 
+import torch
 from transformers import AutoModel, AutoTokenizer
 
 
 class TransformerFeatureExtractor:
+    """Extracts features from input texts using transformer embeddings."""
+
     def __init__(
         self,
         model_name: str,
@@ -16,11 +17,12 @@ class TransformerFeatureExtractor:
         """
         Initializes the TransformerFeatureExtractor.
 
-        Parameters:
+        Args:
             model_name (str): The name or path of the pre-trained transformer model.
             num_emb_layers (int, optional): Number of layers to use for feature extraction. Default is 4.
             max_length (int, optional): Maximum length of input text for tokenization. Default is 512.
-            device (str or torch.device, optional): Device to use for computation ('cuda:0', 'cpu', etc.). Default is 'cuda:0' if available, else 'cpu'.
+            device (str or torch.device, optional): Device to use for computation ('cuda:0', 'cpu', etc.).
+                Default is 'cuda:0' if available, else 'cpu'.
         """
 
         if not torch.cuda.is_available():
@@ -33,15 +35,15 @@ class TransformerFeatureExtractor:
         self.num_emb_layers = num_emb_layers
         self.max_length = max_length
 
-    def extract_features(self, texts: Union[str, List[str]]) -> pd.DataFrame:
+    def extract_features(self, texts: Union[str, List[str]]) -> torch.Tensor:
         """
         Extracts features from input texts using transformer embeddings.
 
-        Parameters:
+        Args:
             texts (str or list): Input text or list of texts for feature extraction.
 
         Returns:
-            pd.DataFrame: A DataFrame containing extracted features for each input text.
+            torch.Tensor: Extracted features for input texts.
         """
         self.model.eval()
 
@@ -53,29 +55,24 @@ class TransformerFeatureExtractor:
             tokenized_output = self.tokenize(text)
             input_ids.append(tokenized_output["input_ids"])
             attention_masks.append(tokenized_output["attention_mask"])
-        input_ids = torch.cat(input_ids, dim=0).to(self.model.device)
-        attention_masks = torch.cat(attention_masks, dim=0).to(self.model.device)
+        input_ids_tensor = torch.cat(input_ids, dim=0).to(self.model.device)
+        attention_masks_tensor = torch.cat(attention_masks, dim=0).to(self.model.device)
 
         with torch.no_grad():
             hidden_states = self.model(
-                input_ids, attention_mask=attention_masks, output_hidden_states=True
+                input_ids_tensor, attention_mask=attention_masks_tensor, output_hidden_states=True
             )["hidden_states"]
 
-        embeddings = sum(
-            hidden_states[-i][:, 0, :] for i in range(1, self.num_emb_layers + 1)
-        )
-        embeddings = embeddings.detach().cpu().numpy()
+        embeddings = sum(hidden_states[-i][:, 0, :] for i in range(1, self.num_emb_layers + 1))
+        embeddings = embeddings.detach().cpu()
 
-        emb_df = pd.DataFrame(embeddings)
-        emb_df.index = texts
-
-        return emb_df
+        return embeddings
 
     def tokenize(self, text: str) -> dict:
         """
         Tokenizes input text using the transformer's tokenizer.
 
-        Parameters:
+        Args:
             text (str): Input text to be tokenized.
 
         Returns:
