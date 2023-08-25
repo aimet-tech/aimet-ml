@@ -3,16 +3,16 @@
 
 [![pypi](https://img.shields.io/pypi/v/aimet-ml.svg)](https://pypi.org/project/aimet-ml/)
 [![python](https://img.shields.io/pypi/pyversions/aimet-ml.svg)](https://pypi.org/project/aimet-ml/)
-[![Build Status](https://github.com/pasitj-aimet/aimet-ml/actions/workflows/dev.yml/badge.svg)](https://github.com/pasitj-aimet/aimet-ml/actions/workflows/dev.yml)
-[![codecov](https://codecov.io/gh/pasitj-aimet/aimet-ml/branch/main/graphs/badge.svg)](https://codecov.io/github/pasitj-aimet/aimet-ml)
+[![Build Status](https://github.com/aimet-tech/aimet-ml/actions/workflows/dev.yml/badge.svg)](https://github.com/aimet-tech/aimet-ml/actions/workflows/dev.yml)
+[![codecov](https://codecov.io/gh/aimet-tech/aimet-ml/branch/main/graphs/badge.svg)](https://codecov.io/github/aimet-tech/aimet-ml)
 
 
 
 Python package of frequently used modules for ML developments in AIMET.
 
 
-* Documentation: <https://pasitj-aimet.github.io/aimet-ml>
-* GitHub: <https://github.com/pasitj-aimet/aimet-ml>
+* Documentation: <https://aimet-tech.github.io/aimet-ml>
+* GitHub: <https://github.com/aimet-tech/aimet-ml>
 * PyPI: <https://pypi.org/project/aimet-ml/>
 * Free software: MIT
 

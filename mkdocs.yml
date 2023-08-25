@@ -1,7 +1,7 @@
 site_name: aimet-ml
-site_url: https://pasitj-aimet.github.io/aimet-ml
-repo_url: https://github.com/pasitj-aimet/aimet-ml
-repo_name: pasitj-aimet/aimet-ml
+site_url: https://aimet-tech.github.io/aimet-ml
+repo_url: https://github.com/aimet-tech/aimet-ml
+repo_name: aimet-tech/aimet-ml
 #strict: true
 nav:
   - Home: index.md
@@ -58,7 +58,7 @@ extra:
       link: https://web.facebook.com/aimet.tech
       name: Facebook
     - icon: fontawesome/brands/github
-      link: https://github.com/pasitj-aimet/aimet-ml
+      link: https://github.com/aimet-tech/aimet-ml
       name: Github
     - icon: material/email
       link: "mailto:pasit.j@aimet.tech"
