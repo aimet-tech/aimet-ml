@@ -46,6 +46,7 @@ toml = {version = "^0.10.2", optional = true}
 bump2version = {version = "^1.0.1", optional = true}
 ffmpeg_python = "^0.2.0"
 ffprobe-python = "^1.0.3"
+static-ffmpeg = "^2.5"
 matplotlib = "^3.7.2"
 numpy = "^1.24.4"
 opencv_python = "^4.8.0.76"

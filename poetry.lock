@@ -1582,13 +1582,13 @@ cache = ["platformdirs"]
 
 [[package]]
 name = "mkdocs-material"
-version = "9.2.3"
+version = "9.2.4"
 description = "Documentation that simply works"
 optional = true
 python-versions = ">=3.7"
 files = [
-    {file = "mkdocs_material-9.2.3-py3-none-any.whl", hash = "sha256:1cbac871826bbe0b5a42d7a86cfe729e03cef60cbd4d7425c640115bf1936360"},
-    {file = "mkdocs_material-9.2.3.tar.gz", hash = "sha256:7a8c5638e28cb1c0a0c7596dd85835c461a73637ce8640ea9302dbc674c2aa29"},
+    {file = "mkdocs_material-9.2.4-py3-none-any.whl", hash = "sha256:2df876367625ff5e0f7112bc19a57521ed21ce9a2b85656baf9bb7f5dc3cb987"},
+    {file = "mkdocs_material-9.2.4.tar.gz", hash = "sha256:25008187b89fc376cb4ed2312b1fea4121bf2bd956442f38afdc6b4dcc21c57d"},
 ]
 
 [package.dependencies]
@@ -2956,6 +2956,24 @@ docs = ["linkify-it-py", "myst-parser", "sphinx", "sphinx-book-theme"]
 test = ["pytest"]
 
 [[package]]
+name = "static-ffmpeg"
+version = "2.5"
+description = "Cross platform ffmpeg to work on various systems."
+optional = false
+python-versions = ">=3.6.0"
+files = [
+    {file = "static_ffmpeg-2.5-py2.py3-none-any.whl", hash = "sha256:046623c105731390746c6f24931d22e1789f7267a0dea4e42206d02f8bf42565"},
+    {file = "static_ffmpeg-2.5.tar.gz", hash = "sha256:77101e2b7afea6930177987d80e84144779ef326e77e7d3e0e89cf4b7e94a91b"},
+]
+
+[package.dependencies]
+filelock = "*"
+requests = "*"
+
+[package.extras]
+test = ["pytest"]
+
+[[package]]
 name = "sympy"
 version = "1.12"
 description = "Computer algebra system (CAS) in Python"
@@ -3449,4 +3467,4 @@ test = ["black", "flake8", "flake8-docstrings", "isort", "mypy", "pytest", "pyte
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9, <3.10"
-content-hash = "2c29892cf6ed7f3dd773ab0291e5f1692aafffb786bf8d489c0f1be38bfdca58"
+content-hash = "c935cc4e5ae3a840aaac2066111e326fbe8c5a97279a3180eb121d41943e73ee"
