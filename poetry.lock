@@ -3432,10 +3432,10 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 
 [extras]
 dev = ["bump2version", "pip", "pre-commit", "toml", "tox", "twine", "virtualenv"]
-doc = ["mkdocs", "mkdocs-autorefs", "mkdocs-include-markdown-plugin", "mkdocs-material", "mkdocstrings"]
+doc = ["mkdocs", "mkdocs-autorefs", "mkdocs-include-markdown-plugin", "mkdocs-material", "mkdocstrings", "mkdocstrings-python"]
 test = ["black", "flake8", "flake8-docstrings", "isort", "mypy", "pytest", "pytest-cov"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9, <3.10"
-content-hash = "942413be7e1359e705414f8f74f3764e30998af494a94075f78b3c9b5bf5978a"
+content-hash = "3495def2022c09ecee8d3bbc36d7e3102b9a4853e949334ae19309fd03174651"
