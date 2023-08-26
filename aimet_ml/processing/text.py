@@ -1,4 +1,7 @@
-def include_keywords(text: str, keywords: list[str]) -> bool:
+from typing import List
+
+
+def include_keywords(text: str, keywords: List[str]) -> bool:
     """
     Check if any of the given keywords are present in the text.
 
@@ -15,7 +18,7 @@ def include_keywords(text: str, keywords: list[str]) -> bool:
     return False
 
 
-def exclude_keywords(text: str, keywords: list[str]) -> bool:
+def exclude_keywords(text: str, keywords: List[str]) -> bool:
     """
     Check if any of the given keywords are present in the text.
 
@@ -32,7 +35,7 @@ def exclude_keywords(text: str, keywords: list[str]) -> bool:
     return True
 
 
-def clean_repeated_tokens(tokens: list[str]) -> list[str]:
+def clean_repeated_tokens(tokens: List[str]) -> List[str]:
     """
     Remove sequences of repeated tokens from a list.
 
