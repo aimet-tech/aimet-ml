@@ -611,6 +611,17 @@ future = "*"
 dev = ["Sphinx (==2.1.0)", "future (==0.17.1)", "numpy (==1.16.4)", "pytest (==4.6.1)", "pytest-mock (==1.10.4)", "tox (==3.12.1)"]
 
 [[package]]
+name = "ffprobe-python"
+version = "1.0.3"
+description = " A wrapper around ffprobe command to extract metadata from media files."
+optional = false
+python-versions = "*"
+files = [
+    {file = "ffprobe-python-1.0.3.tar.gz", hash = "sha256:b1d3e69e65e0814e28575f63a47b836a0b7cc8f1ffedd62d27152d9e4488214a"},
+    {file = "ffprobe_python-1.0.3-py3-none-any.whl", hash = "sha256:b02576228f6da0b0bb973e15e5dadb132013a4ded202dabb89ac77779e9634d6"},
+]
+
+[[package]]
 name = "filelock"
 version = "3.12.2"
 description = "A platform independent file lock."
@@ -777,13 +788,13 @@ dev = ["flake8", "markdown", "twine", "wheel"]
 
 [[package]]
 name = "griffe"
-version = "0.35.0"
+version = "0.35.1"
 description = "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API."
 optional = true
 python-versions = ">=3.8"
 files = [
-    {file = "griffe-0.35.0-py3-none-any.whl", hash = "sha256:52b1dc86dfca6db5877d65a07997f8363f61f14266064cf1cae41b70aac9f395"},
-    {file = "griffe-0.35.0.tar.gz", hash = "sha256:d313f102da3d155fe0a3d284acb0fc93059ee6788903a2e983eb4f64a713fac1"},
+    {file = "griffe-0.35.1-py3-none-any.whl", hash = "sha256:ff580073a71793cc58ed1fad696aee49c4bd9e637d3e0cde5b39a269ad8e59e4"},
+    {file = "griffe-0.35.1.tar.gz", hash = "sha256:1e3bf605344ab32fe2729161bb4f7761996684f838dfd5a7c60af03a0b20375f"},
 ]
 
 [package.dependencies]
@@ -3438,4 +3449,4 @@ test = ["black", "flake8", "flake8-docstrings", "isort", "mypy", "pytest", "pyte
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9, <3.10"
-content-hash = "3495def2022c09ecee8d3bbc36d7e3102b9a4853e949334ae19309fd03174651"
+content-hash = "2c29892cf6ed7f3dd773ab0291e5f1692aafffb786bf8d489c0f1be38bfdca58"
