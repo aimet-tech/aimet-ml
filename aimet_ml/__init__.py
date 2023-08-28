@@ -7,4 +7,4 @@ static_ffmpeg.add_paths()
 
 __author__ = """Pasit Jakkrawankul"""
 __email__ = 'pasit.j@aimet.tech'
-__version__ = '0.1.1'
+__version__ = '0.2.0'
