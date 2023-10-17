@@ -44,10 +44,13 @@ mkdocs-autorefs = {version = "^0.5.0", optional = true}
 pre-commit = {version = "^3.3.3", optional = true}
 toml = {version = "^0.10.2", optional = true}
 bump2version = {version = "^1.0.1", optional = true}
+types-pyyaml = {version = "^6.0.12.12", optional = true}
+boto3 = "^1.28.47"
 ffmpeg_python = "^0.2.0"
 ffprobe-python = "^1.0.3"
 static-ffmpeg = "^2.5"
 matplotlib = "^3.7.2"
+msgpack = "^1.0.7"
 numpy = "^1.24.4"
 opencv_python = "^4.8.0.76"
 pandas = "^2.0.3"
@@ -57,8 +60,8 @@ torch = "^2.0.1"
 torchvision = "^0.15.2"
 torchaudio = "^2.0.2"
 transformers = "^4.32.0"
-
-
+wandb = "^0.15.10"
+pyyaml = "^6.0.1"
 
 [tool.poetry.extras]
 test = [
@@ -68,7 +71,8 @@ test = [
     "mypy",
     "flake8",
     "flake8-docstrings",
-    "pytest-cov"
+    "pytest-cov",
+    "types-pyyaml"
     ]
 
 dev = ["tox", "pre-commit", "virtualenv", "pip", "twine", "toml", "bump2version"]
