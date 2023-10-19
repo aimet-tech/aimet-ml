@@ -34,11 +34,11 @@ def upload_files_s3(bucket_name: str, bucket_dir_path: str, src_file_paths: list
 
 def upload_dir_s3(bucket_name: str, bucket_dir_path: str, src_dir_path: str):
     """
-    Upload the contents of a local directory to an S3 bucket, preserving the directory structure.
+    Upload a local directory to an S3 bucket, preserving the directory structure.
 
     Args:
         bucket_name (str): The name of the S3 bucket.
-        bucket_dir_path (str): The path within the bucket where the contents will be uploaded.
+        bucket_dir_path (str): The path within the bucket where the local directory will be uploaded.
         src_dir_path (str): The local directory path to be uploaded.
     """
     s3 = boto3.client("s3")
