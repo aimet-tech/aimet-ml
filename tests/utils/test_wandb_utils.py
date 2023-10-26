@@ -166,19 +166,28 @@ def test_load_artifact_with_aliases(api, target_artifact, target_artifact_names_
         assert target_table == loaded_table
 
 
-def test_load_artifact_with_wrong_type(api, target_artifact, target_artifact_names_with_aliases):
-    name, alias = extract_name_and_alias(target_artifact_names_with_aliases[0])
-    artifact = load_artifact(api, target_artifact['type'] + 'wrong for sure !!! XD 555', name, alias)
+def test_load_artifact_with_wrong_type(api):
+    available_artifact_types = [t.name for t in api.artifact_types()]
+    artifact_names = list_artifact_names(api, available_artifact_types[0], with_versions=False, with_aliases=False)
+    artifact_name = artifact_names[0]
+    wrong_artifact_type = 'test-wrong-type-' + '-'.join(available_artifact_types)
+    artifact = load_artifact(api, wrong_artifact_type, artifact_name, 'latest')
     assert artifact is None
 
 
-def test_load_artifact_with_wrong_name(api, target_artifact, target_artifact_names_with_aliases):
-    name, alias = extract_name_and_alias(target_artifact_names_with_aliases[0])
-    artifact = load_artifact(api, target_artifact['type'], name + 'wrong for sure !!! XD 555', alias)
+def test_load_artifact_with_wrong_name(api):
+    artifact_type = api.artifact_types()[0].name
+    artifact_names = list_artifact_names(api, artifact_type, with_versions=False, with_aliases=False)
+    wrong_artifact_name = 'test-wrong-name-' + '-'.join(artifact_names)
+    artifact = load_artifact(api, artifact_type, wrong_artifact_name, 'latest')
     assert artifact is None
 
 
-def test_load_artifact_with_wrong_alias(api, target_artifact, target_artifact_names_with_aliases):
-    name, alias = extract_name_and_alias(target_artifact_names_with_aliases[0])
-    artifact = load_artifact(api, target_artifact['type'], name, alias + 'wrong for sure !!! XD 555')
+def test_load_artifact_with_wrong_alias(api):
+    artifact_type = api.artifact_types()[0].name
+    collection = api.artifact_type(artifact_type).collections()[0]
+    artifact_name = collection.name
+    aliases = collection.aliases
+    wrong_alias = 'test-wrong-alias-' + '-'.join(aliases)
+    artifact = load_artifact(api, artifact_type, artifact_name, wrong_alias)
     assert artifact is None
