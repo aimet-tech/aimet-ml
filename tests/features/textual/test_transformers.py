@@ -1,5 +1,6 @@
 import pytest
 import torch
+
 from aimet_ml.features.textual.transformers import TransformerFeatureExtractor
 
 

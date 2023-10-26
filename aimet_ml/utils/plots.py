@@ -7,12 +7,12 @@ from matplotlib.figure import Figure
 PWD = Path(__file__).parent
 
 
-def add_bar_label(bar_chart: plt.bar, with_percent: bool = False, percent_digits: int = 2) -> None:
+def add_bar_label(bar_chart: plt.Axes, with_percent: bool = False, percent_digits: int = 2) -> None:
     """
     Add labels to a bar chart with optional percentage values.
 
     Args:
-        bar_chart (plt.bar): The bar chart object.
+        bar_chart (plt.Axes): The bar chart object.
         with_percent (bool, optional): Whether to include percentage values. Defaults to False.
         percent_digits (int, optional): Number of decimal digits for percentage values. Defaults to 2.
     """

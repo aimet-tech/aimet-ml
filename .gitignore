@@ -116,3 +116,7 @@ site/
 # test output
 output.mp3
 output.mp4
+
+# W&B
+wandb/
+artifacts/
