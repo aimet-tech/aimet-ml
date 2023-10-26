@@ -9,7 +9,7 @@ from aimet_ml.utils.io_utils import read_json, read_pickle, read_yaml, write_jso
 
 
 @pytest.fixture(scope="module")
-def tmp_dir(tmp_path_factory: pytest.TempPathFactory) -> Path:
+def tmp_dir(tmp_path_factory: pytest.TempPathFactory):
     """
     Create a temporary directory using pytest's tmp_path_factory.
 
@@ -49,7 +49,7 @@ def test_read_json(tmp_dir: Path, data: dict):
         data (dict): The data to be written to the JSON file.
 
     """
-    tmp_file = tmp_dir / 'tmp.json'
+    tmp_file = str(tmp_dir / 'tmp.json')
     with open(tmp_file, "w") as f:
         json.dump(data, f)
 
@@ -65,7 +65,7 @@ def test_read_pickle(tmp_dir: Path, data: dict):
         tmp_dir (Path): The temporary directory where the file will be created.
         data (dict): The data to be written to the Pickle file.
     """
-    tmp_file = tmp_dir / 'tmp.pkl'
+    tmp_file = str(tmp_dir / 'tmp.pkl')
     with open(tmp_file, "wb") as f:
         pickle.dump(data, f)
 
@@ -81,7 +81,7 @@ def test_read_yaml(tmp_dir: Path, data: dict):
         tmp_dir (Path): The temporary directory where the file will be created.
         data (dict): The data to be written to the YAML file.
     """
-    tmp_file = tmp_dir / 'tmp.yaml'
+    tmp_file = str(tmp_dir / 'tmp.yaml')
     with open(tmp_file, "w") as f:
         yaml.dump(data, f)
 
@@ -97,7 +97,7 @@ def test_write_json(tmp_dir: Path, data: dict):
         tmp_dir (Path): The temporary directory where the file will be created.
         data (dict): The data to be written to the JSON file.
     """
-    tmp_file = tmp_dir / 'tmp.json'
+    tmp_file = str(tmp_dir / 'tmp.json')
     write_json(tmp_file, data)
 
     with open(tmp_file, "r") as f:
@@ -114,7 +114,7 @@ def test_write_pickle(tmp_dir: Path, data: dict):
         tmp_dir (Path): The temporary directory where the file will be created.
         data (dict): The data to be written to the Pickle file.
     """
-    tmp_file = tmp_dir / 'tmp.pkl'
+    tmp_file = str(tmp_dir / 'tmp.pkl')
     write_pickle(tmp_file, data)
 
     with open(tmp_file, "rb") as f:
@@ -131,7 +131,7 @@ def test_write_yaml(tmp_dir: Path, data: dict):
         tmp_dir (Path): The temporary directory where the file will be created.
         data (dict): The data to be written to the YAML file.
     """
-    tmp_file = tmp_dir / 'tmp.yaml'
+    tmp_file = str(tmp_dir / 'tmp.yaml')
     write_yaml(tmp_file, data)
 
     with open(tmp_file, "r") as f:

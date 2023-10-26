@@ -1,3 +1,5 @@
+from typing import Union
+
 import pandas as pd
 
 import wandb
@@ -53,7 +55,7 @@ def list_artifact_names(
 
 def load_artifact(
     api: wandb.Api, artifact_type: str, artifact_name: str, artifact_alias: str, per_page: int = 100
-) -> wandb.Artifact:
+) -> Union[wandb.Artifact, None]:
     """
     Load a WandB artifact by name and alias.
 

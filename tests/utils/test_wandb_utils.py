@@ -300,7 +300,11 @@ def test_load_artifact_with_versions(api: wandb.Api, target_artifact: dict, targ
     for name_with_version in target_artifact_names_with_versions:
         name, version = extract_name_and_alias(name_with_version)
         target_table = get_object_by_version(target_artifact, name, version, TEST_TABLE_NAME)
-        loaded_table = load_artifact(api, target_artifact['type'], name, version).get(TEST_TABLE_NAME)
+
+        loaded_artifact = load_artifact(api, target_artifact['type'], name, version)
+        assert loaded_artifact is not None
+
+        loaded_table = loaded_artifact.get(TEST_TABLE_NAME)
         assert target_table == loaded_table
 
 
@@ -316,7 +320,11 @@ def test_load_artifact_with_aliases(api: wandb.Api, target_artifact: dict, targe
     for name_with_alias in target_artifact_names_with_aliases:
         name, alias = extract_name_and_alias(name_with_alias)
         target_table = get_object_by_alias(target_artifact, name, alias, TEST_TABLE_NAME)
-        loaded_table = load_artifact(api, target_artifact['type'], name, alias).get(TEST_TABLE_NAME)
+
+        loaded_artifact = load_artifact(api, target_artifact['type'], name, alias)
+        assert loaded_artifact is not None
+
+        loaded_table = loaded_artifact.get(TEST_TABLE_NAME)
         assert target_table == loaded_table
 
 

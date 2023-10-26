@@ -17,7 +17,7 @@ if AWS_S3_BUCKET is None:
 
 
 @pytest.fixture(scope="module")
-def tmp_dir(tmp_path_factory: pytest.TempPathFactory) -> Path:
+def tmp_dir(tmp_path_factory: pytest.TempPathFactory):
     """
     Fixture for creating a temporary directory using pytest's TempPathFactory.
 
@@ -43,8 +43,9 @@ def download_and_check(file_path: str, expected_content: str, tmp_dir: Path):
     Raises:
         AssertionError: If the downloaded file content does not match the expected content.
     """
-    download_s3(AWS_S3_BUCKET, file_path, os.path.join(tmp_dir, os.path.basename(file_path)))
-    with open(os.path.join(tmp_dir, os.path.basename(file_path)), "r") as file:
+    output_path = os.path.join(tmp_dir, os.path.basename(file_path))
+    download_s3(str(AWS_S3_BUCKET), file_path, output_path)
+    with open(output_path, "r") as file:
         assert file.read() == expected_content
 
 
@@ -72,9 +73,9 @@ def test_upload_files_s3(tmp_dir: Path):
         tmp_dir (pathlib.Path): The local temporary directory for storing uploaded and downloaded files.
     """
     unique_dir_path = f"test_upload_files/{CURRENT_TIME}"
-    uploaded_files = [tmp_dir / f"test_file_{i}.txt" for i in range(1, 4)]
+    uploaded_files = [str(tmp_dir / f"test_file_{i}.txt") for i in range(1, 4)]
 
-    upload_files_s3(AWS_S3_BUCKET, unique_dir_path, uploaded_files)
+    upload_files_s3(str(AWS_S3_BUCKET), unique_dir_path, uploaded_files)
 
     for i in range(1, 4):
         download_and_check(f"{unique_dir_path}/test_file_{i}.txt", f"hello, test file {i}", tmp_dir)
@@ -89,9 +90,9 @@ def test_upload_dir_s3(tmp_dir: Path):
     """
     unique_dir_path = f"test_upload_dir/{CURRENT_TIME}"
 
-    upload_dir_s3(AWS_S3_BUCKET, unique_dir_path, tmp_dir)
+    upload_dir_s3(str(AWS_S3_BUCKET), unique_dir_path, str(tmp_dir))
 
-    tmp_dir_name = os.path.basename(str(tmp_dir))
+    tmp_dir_name = os.path.basename(tmp_dir)
 
     for i in range(1, 4):
         download_and_check(f"{unique_dir_path}/{tmp_dir_name}/test_file_{i}.txt", f"hello, test file {i}", tmp_dir)
