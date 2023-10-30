@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://aimet-tech.github.io/aimet-ml/</loc>
-         <lastmod>2023-10-26</lastmod>
+         <lastmod>2023-10-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aimet-tech.github.io/aimet-ml/changelog/</loc>
-         <lastmod>2023-10-26</lastmod>
+         <lastmod>2023-10-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aimet-tech.github.io/aimet-ml/contributing/</loc>
-         <lastmod>2023-10-26</lastmod>
+         <lastmod>2023-10-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aimet-tech.github.io/aimet-ml/installation/</loc>
-         <lastmod>2023-10-26</lastmod>
+         <lastmod>2023-10-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aimet-tech.github.io/aimet-ml/usage/</loc>
-         <lastmod>2023-10-26</lastmod>
+         <lastmod>2023-10-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aimet-tech.github.io/aimet-ml/api/features/</loc>
-         <lastmod>2023-10-26</lastmod>
+         <lastmod>2023-10-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aimet-tech.github.io/aimet-ml/api/processing/</loc>
-         <lastmod>2023-10-26</lastmod>
+         <lastmod>2023-10-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://aimet-tech.github.io/aimet-ml/api/utils/</loc>
-         <lastmod>2023-10-26</lastmod>
+         <lastmod>2023-10-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
