@@ -96,3 +96,7 @@ def test_upload_dir_s3(tmp_dir: Path):
 
     for i in range(1, 4):
         download_and_check(f"{unique_dir_path}/{tmp_dir_name}/test_file_{i}.txt", f"hello, test file {i}", tmp_dir)
+
+
+if __name__ == "__main__":
+    pytest.main()
