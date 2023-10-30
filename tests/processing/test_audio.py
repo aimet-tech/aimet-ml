@@ -112,3 +112,7 @@ def test_convert_audio_from_video(video_file_path: str, temp_output_path: str) -
     waveform, sample_rate = load_audio(temp_output_path)
     validate_audio(waveform, sample_rate, target_sample_rate)
     os.remove(temp_output_path)
+
+
+if __name__ == "__main__":
+    pytest.main()

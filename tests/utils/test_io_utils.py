@@ -138,3 +138,7 @@ def test_write_yaml(tmp_dir: Path, data: dict):
         result = yaml.safe_load(f)
 
     assert result == data
+
+
+if __name__ == "__main__":
+    pytest.main()

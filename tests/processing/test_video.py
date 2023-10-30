@@ -70,3 +70,7 @@ def test_convert_video(video_file_path: str, temp_output_path: str) -> None:
     convert_video(video_file_path, temp_output_path, 10)
     validate_video(temp_output_path)
     os.remove(temp_output_path)
+
+
+if __name__ == "__main__":
+    pytest.main()

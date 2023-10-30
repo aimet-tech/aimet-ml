@@ -32,3 +32,7 @@ def test_get_commit_id_full(in_git_repository):
     assert len(commit_id) == 40  # Full commit ID should be 40 characters
     assert commit_id.isalnum()
     assert commit_id == os.popen("git rev-parse HEAD").read().strip()
+
+
+if __name__ == "__main__":
+    pytest.main()

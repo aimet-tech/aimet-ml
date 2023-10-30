@@ -371,3 +371,7 @@ def test_load_artifact_with_wrong_alias(api: wandb.Api):
     wrong_alias = 'test-wrong-alias-' + '-'.join(aliases)
     artifact = load_artifact(api, artifact_type, artifact_name, wrong_alias)
     assert artifact is None
+
+
+if __name__ == "__main__":
+    pytest.main()
