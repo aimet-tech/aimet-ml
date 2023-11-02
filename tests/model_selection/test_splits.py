@@ -26,9 +26,6 @@ def validate_splits(
         group_cols (Collection[str], optional): Column names for grouping.
         dev_df (pd.DataFrame): The development dataset.
         test_df (pd.DataFrame): The test dataset.
-
-    Raises:
-        AssertionError: If the splits do not meet the specified criteria.
     """
     if isinstance(test_fraction, int):
         test_fraction = 1 / test_fraction

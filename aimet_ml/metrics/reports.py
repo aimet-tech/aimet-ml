@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Union
+from typing import Any, Collection, Dict, Union
 
 
 def flatten_dict(d: Dict[str, Any], prefix: str = "") -> Dict[str, Any]:
@@ -25,8 +25,8 @@ def flatten_dict(d: Dict[str, Any], prefix: str = "") -> Dict[str, Any]:
 def add_metric_to_report(
     cls_report: Dict[str, Dict[str, Any]],
     metric_name: str,
-    label_names: List[str],
-    metric_values: List[Union[float, int]],
+    label_names: Collection[str],
+    metric_values: Collection[Union[float, int]],
 ) -> None:
     """
     Adds metric values to a classification report.
@@ -34,17 +34,23 @@ def add_metric_to_report(
     Args:
         cls_report (dict): The classification report as a dictionary.
         metric_name (str): The name of the metric to add.
-        label_names (list): List of label names.
-        metric_values (list): List of metric values corresponding to label_names.
+        label_names (Collection[str]): Collection of label names.
+        metric_values (Collection[Union[float, int]]): Collection of metric values corresponding to label_names.
 
     Raises:
         AssertionError: If the lengths of label_names and metric_values do not match.
     """
+    if len(label_names) != len(metric_values):
+        raise ValueError('label_names and metric_values must have the same length')
 
-    assert len(label_names) == len(metric_values)
+    if len(set(label_names)) != len(label_names):
+        raise ValueError('Elements in label_names must be distinct from each other')
 
-    cls_report["macro avg"]["average_precision"] = 0
-    cls_report["weighted avg"]["average_precision"] = 0
+    if any(label_name not in cls_report for label_name in label_names):
+        raise ValueError('All elements in label_names must be in the target_names of cls_report')
+
+    cls_report["macro avg"][metric_name] = 0
+    cls_report["weighted avg"][metric_name] = 0
 
     for label_name, metric_value in zip(label_names, metric_values):
         macro_w = 1 / len(label_names)
