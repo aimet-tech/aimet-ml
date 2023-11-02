@@ -1,7 +1,7 @@
 sources = aimet_ml
 
 .PHONY: test format lint unittest coverage pre-commit clean
-test: format lint unittest
+test: format lint coverage
 
 format:
 	isort $(sources) tests
