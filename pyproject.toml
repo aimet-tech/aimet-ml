@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "aimet-ml"
-version = "0.4.1"
+version = "0.4.2"
 homepage = "https://github.com/aimet-tech/aimet-ml"
 description = "Python package of frequently used modules for ML developments in AIMET.."
 authors = ["Pasit Jakkrawankul <pasit.j@aimet.tech>"]
