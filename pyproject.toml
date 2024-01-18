@@ -46,6 +46,8 @@ toml = {version = "^0.10.2", optional = true}
 bump2version = {version = "^1.0.1", optional = true}
 types-pyyaml = {version = "^6.0.12.12", optional = true}
 python-dotenv = {version = "^1.0.0", optional = true}
+torch = {version = "^2.0.1", optional = true}
+transformers = {version = "^4.36.2", optional = true}
 boto3 = "^1.28.47"
 ffmpeg_python = "^0.2.0"
 ffprobe-python = "^1.0.3"
@@ -57,10 +59,6 @@ opencv_python = "^4.8.0.76"
 pandas = "^1.5.3"
 pydub = "^0.25.1"
 librosa = "^0.10.1"
-torch = "^2.0.1"
-torchvision = "^0.15.2"
-torchaudio = "^2.0.2"
-transformers = "^4.32.0"
 wandb = "^0.15.10"
 pyyaml = "^6.0.1"
 
@@ -74,7 +72,7 @@ test = [
     "flake8-docstrings",
     "pytest-cov",
     "types-pyyaml",
-    "python-dotenv"
+    "python-dotenv",
     ]
 
 dev = ["tox", "pre-commit", "virtualenv", "pip", "twine", "toml", "bump2version"]
@@ -88,6 +86,8 @@ doc = [
     "mkdocs-autorefs",
     "mkdocstrings-python"
     ]
+
+transformers = ["torch", "transformers"]
 
 [tool.black]
 line-length = 120
