@@ -5,15 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2024-01-18
+
+### Changed
+
+- Update transformers version requirement to ^4.36.2.
+- Move transformers and torch to a new extra dependency section named "transformers".
+
 ## [0.4.4] - 2023-12-22
 
-### Added
+### Changed
 
 - Loosen pandas version requirement to ^1.5.3.
 
 ## [0.4.3] - 2023-11-02
 
-### Added
+### Changed
 
 - Update mkdocs.yml to display documents for the new modules.
 
@@ -21,12 +28,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Update test coverage config.
 - Add .env.template
+
+### Changed
+
+- Update test coverage config.
 
 ## [0.4.1] - 2023-11-02
 
-### Added
+### Changed
 
 - Update documents for the recently added functions.
 
@@ -45,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.2] - 2023-10-27
 
-### Added
+### Changed
 
 - Edit type hints
 - Convert variables to appropriate types.
@@ -68,7 +78,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.0] - 2023-08-28
 
-### Added
+### Changed
 
 - Change layout of module document.
 
