@@ -138,6 +138,9 @@ def split_dataset(
 ) -> Dict[str, pd.DataFrame]:
     """
     Split a dataset into development, test, and cross-validation sets with stratification and grouping.
+    The dataset will be split into a development set and a test set. The development set will then be further
+    split into k-fold cross-validation sets, each containing its own training and validation sets.
+    The final data splits include a test set, k training sets, and k validation sets.
 
     Args:
         dataset_df (pd.DataFrame): The input DataFrame to be split.
@@ -198,6 +201,9 @@ def split_dataset_v2(
 ) -> Dict[str, pd.DataFrame]:
     """
     Split a dataset into k-fold cross-validation sets with stratification and grouping.
+    The dataset will be split into k-fold cross-validation sets, each containing development and test sets.
+    For each fold, the development set will be further split into training and validation sets.
+    The final data splits include k test sets, k training sets, and k validation sets.
 
     Args:
         dataset_df (pd.DataFrame): The input DataFrame to be split.
@@ -231,7 +237,7 @@ def split_dataset_v2(
         k = n + 1
         data_splits[test_split_name_format.format(k)] = dataset_df.iloc[test_rows].reset_index(drop=True)
 
-        # split into dev and test datasets
+        # split into training and validation sets
         dev_dataset_df = dataset_df.iloc[dev_rows].reset_index(drop=True)
         train_dataset_df, val_dataset_df = stratified_group_split(
             dev_dataset_df, val_fraction, stratify_cols, group_cols, random_seed
