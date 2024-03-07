@@ -212,7 +212,7 @@ def split_dataset_v2(
         val_fraction (Union[float, int], optional): The fraction of data to be used for validation.
                                                      If a float is given, it's rounded to the nearest fraction.
                                                      If an integer (n) is given, the fraction is calculated as 1/n.
-                                                     Defaults to 0.2.
+                                                     Defaults to 0.1.
         test_n_splits (int, optional): Number of cross-validation splits. Defaults to 5.
         stratify_cols (Collection[str], optional): Column names for stratification. Defaults to None.
         group_cols (Collection[str], optional): Column names for grouping. Defaults to None.
