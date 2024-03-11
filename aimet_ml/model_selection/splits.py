@@ -126,6 +126,67 @@ def stratified_group_split(
 
 def split_dataset(
     dataset_df: pd.DataFrame,
+    val_fraction: Union[float, int] = 0.1,
+    test_n_splits: int = 5,
+    stratify_cols: Optional[Collection[str]] = None,
+    group_cols: Optional[Collection[str]] = None,
+    train_split_name_format: str = "train_fold_{}",
+    val_split_name_format: str = "val_fold_{}",
+    test_split_name_format: str = "test_fold_{}",
+    random_seed: int = 1414,
+) -> Dict[str, pd.DataFrame]:
+    """
+    Split a dataset into k-fold cross-validation sets with stratification and grouping.
+
+    The dataset will be split into k-fold cross-validation sets, each containing development and test sets.
+    For each fold, the development set will be further split into training and validation sets.
+    The final data splits include k test sets, k training sets, and k validation sets.
+
+    Args:
+        dataset_df (pd.DataFrame): The input DataFrame to be split.
+        val_fraction (Union[float, int], optional): The fraction of data to be used for validation.
+                                                     If a float is given, it's rounded to the nearest fraction.
+                                                     If an integer (n) is given, the fraction is calculated as 1/n.
+                                                     Defaults to 0.1.
+        test_n_splits (int, optional): Number of cross-validation splits. Defaults to 5.
+        stratify_cols (Collection[str], optional): Column names for stratification. Defaults to None.
+        group_cols (Collection[str], optional): Column names for grouping. Defaults to None.
+        train_split_name_format (str, optional): Format for naming training splits. Defaults to "train_fold_{}".
+        val_split_name_format (str, optional): Format for naming validation splits. Defaults to "val_fold_{}".
+        test_split_name_format (str, optional): Format for naming validation splits. Defaults to "test_fold_{}".
+        random_seed (int, optional): Random seed for reproducibility. Defaults to 1414.
+
+    Returns:
+        Dict[str, pd.DataFrame]: A dictionary containing the split DataFrames.
+    """
+    if test_n_splits <= 1:
+        raise ValueError("test_n_splits must be greater than 1")
+
+    data_splits = dict()
+
+    # cross-validation split
+    k_fold_splitter = get_splitter(stratify_cols, group_cols, test_n_splits, random_seed)
+
+    stratify = join_cols(dataset_df, stratify_cols) if stratify_cols else None
+    groups = join_cols(dataset_df, group_cols) if group_cols else None
+
+    for n, (dev_rows, test_rows) in enumerate(k_fold_splitter.split(X=dataset_df, y=stratify, groups=groups)):
+        k = n + 1
+        data_splits[test_split_name_format.format(k)] = dataset_df.iloc[test_rows].reset_index(drop=True)
+
+        # split into training and validation sets
+        dev_dataset_df = dataset_df.iloc[dev_rows].reset_index(drop=True)
+        train_dataset_df, val_dataset_df = stratified_group_split(
+            dev_dataset_df, val_fraction, stratify_cols, group_cols, random_seed
+        )
+        data_splits[train_split_name_format.format(k)] = train_dataset_df
+        data_splits[val_split_name_format.format(k)] = val_dataset_df
+
+    return data_splits
+
+
+def split_dataset_single_test(
+    dataset_df: pd.DataFrame,
     test_fraction: Union[float, int] = 0.2,
     val_n_splits: int = 5,
     stratify_cols: Optional[Collection[str]] = None,
@@ -185,66 +246,5 @@ def split_dataset(
         k = n + 1
         data_splits[train_split_name_format.format(k)] = dev_dataset_df.iloc[train_rows].reset_index(drop=True)
         data_splits[val_split_name_format.format(k)] = dev_dataset_df.iloc[val_rows].reset_index(drop=True)
-
-    return data_splits
-
-
-def split_dataset_v2(
-    dataset_df: pd.DataFrame,
-    val_fraction: Union[float, int] = 0.1,
-    test_n_splits: int = 5,
-    stratify_cols: Optional[Collection[str]] = None,
-    group_cols: Optional[Collection[str]] = None,
-    train_split_name_format: str = "train_fold_{}",
-    val_split_name_format: str = "val_fold_{}",
-    test_split_name_format: str = "test_fold_{}",
-    random_seed: int = 1414,
-) -> Dict[str, pd.DataFrame]:
-    """
-    Split a dataset into k-fold cross-validation sets with stratification and grouping.
-
-    The dataset will be split into k-fold cross-validation sets, each containing development and test sets.
-    For each fold, the development set will be further split into training and validation sets.
-    The final data splits include k test sets, k training sets, and k validation sets.
-
-    Args:
-        dataset_df (pd.DataFrame): The input DataFrame to be split.
-        val_fraction (Union[float, int], optional): The fraction of data to be used for validation.
-                                                     If a float is given, it's rounded to the nearest fraction.
-                                                     If an integer (n) is given, the fraction is calculated as 1/n.
-                                                     Defaults to 0.1.
-        test_n_splits (int, optional): Number of cross-validation splits. Defaults to 5.
-        stratify_cols (Collection[str], optional): Column names for stratification. Defaults to None.
-        group_cols (Collection[str], optional): Column names for grouping. Defaults to None.
-        train_split_name_format (str, optional): Format for naming training splits. Defaults to "train_fold_{}".
-        val_split_name_format (str, optional): Format for naming validation splits. Defaults to "val_fold_{}".
-        test_split_name_format (str, optional): Format for naming validation splits. Defaults to "test_fold_{}".
-        random_seed (int, optional): Random seed for reproducibility. Defaults to 1414.
-
-    Returns:
-        Dict[str, pd.DataFrame]: A dictionary containing the split DataFrames.
-    """
-    if test_n_splits <= 1:
-        raise ValueError("test_n_splits must be greater than 1")
-
-    data_splits = dict()
-
-    # cross-validation split
-    k_fold_splitter = get_splitter(stratify_cols, group_cols, test_n_splits, random_seed)
-
-    stratify = join_cols(dataset_df, stratify_cols) if stratify_cols else None
-    groups = join_cols(dataset_df, group_cols) if group_cols else None
-
-    for n, (dev_rows, test_rows) in enumerate(k_fold_splitter.split(X=dataset_df, y=stratify, groups=groups)):
-        k = n + 1
-        data_splits[test_split_name_format.format(k)] = dataset_df.iloc[test_rows].reset_index(drop=True)
-
-        # split into training and validation sets
-        dev_dataset_df = dataset_df.iloc[dev_rows].reset_index(drop=True)
-        train_dataset_df, val_dataset_df = stratified_group_split(
-            dev_dataset_df, val_fraction, stratify_cols, group_cols, random_seed
-        )
-        data_splits[train_split_name_format.format(k)] = train_dataset_df
-        data_splits[val_split_name_format.format(k)] = val_dataset_df
 
     return data_splits
