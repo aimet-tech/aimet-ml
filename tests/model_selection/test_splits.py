@@ -5,7 +5,13 @@ import pandas as pd
 import pytest
 from sklearn.model_selection import GroupKFold, KFold, StratifiedGroupKFold, StratifiedKFold
 
-from aimet_ml.model_selection import get_splitter, join_cols, split_dataset, split_dataset_v2, stratified_group_split
+from aimet_ml.model_selection import (
+    get_splitter,
+    join_cols,
+    split_dataset,
+    split_dataset_single_test,
+    stratified_group_split,
+)
 
 
 def validate_splits(
@@ -201,7 +207,7 @@ def test_stratified_group_split(
         ),
     ],
 )
-def test_split_dataset(
+def test_split_dataset_single_test(
     test_fraction: Union[float, int],
     val_n_splits: int,
     stratify_cols: Optional[Collection[str]],
@@ -214,7 +220,7 @@ def test_split_dataset(
     sample_df: pd.DataFrame,
 ):
     """
-    Test the split_dataset function.
+    Test the split_dataset_single_test function.
 
     Args:
         test_fraction (Union[float, int], optional): The fraction of data to be used for testing.
@@ -231,7 +237,7 @@ def test_split_dataset(
         sample_df (pd.DataFrame): A sample DataFrame.
     """
     with expectation:
-        data_splits = split_dataset(
+        data_splits = split_dataset_single_test(
             sample_df,
             test_fraction,
             val_n_splits,
@@ -284,7 +290,7 @@ def test_split_dataset(
         ),
     ],
 )
-def test_split_dataset_v2(
+def test_split_dataset(
     val_fraction: Union[float, int],
     test_n_splits: int,
     stratify_cols: Optional[Collection[str]],
@@ -296,7 +302,7 @@ def test_split_dataset_v2(
     sample_df: pd.DataFrame,
 ):
     """
-    Test the split_dataset_v2 function.
+    Test the split_dataset function.
 
     Args:
         val_fraction (Union[float, int], optional): The fraction of data to be used for validation.
@@ -312,7 +318,7 @@ def test_split_dataset_v2(
         sample_df (pd.DataFrame): A sample DataFrame.
     """
     with expectation:
-        data_splits = split_dataset_v2(
+        data_splits = split_dataset(
             sample_df,
             val_fraction,
             test_n_splits,
