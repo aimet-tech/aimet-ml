@@ -3150,7 +3150,7 @@
     <span class="k">if</span> <span class="n">artifact_name_with_alias</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">available_artifact_names</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">return</span> <span class="n">wandb</span><span class="o">.</span><span class="n">use_artifact</span><span class="p">(</span><span class="n">artifact_name_with_alias</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wandb</span><span class="o">.</span><span class="n">use_artifact</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">api</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;project&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">artifact_name_with_alias</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
