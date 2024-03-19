@@ -80,4 +80,4 @@ def load_artifact(
     if artifact_name_with_alias not in available_artifact_names:
         return None
 
-    return wandb.use_artifact(artifact_name_with_alias)
+    return wandb.use_artifact(f"{api.settings['entity']}/{api.settings['project']}/artifact_name_with_alias")
